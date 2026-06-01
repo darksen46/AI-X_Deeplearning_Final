@@ -123,11 +123,11 @@ AI 생성 여부를 예측하기 위해 다음 모델을 사용할 예정이다.
 
 ### Evaluation Metrics
 
-* Accuracy
-* Precision
-* Recall
-* F1-score
-* Confusion Matrix
+* Accuracy (정확도)
+* Precision (정밀도)
+* Recall (재현률)
+* F1-score (F1 점수)
+* Confusion Matrix (혼동 행렬)
 
 ### Analysis Plan
 
