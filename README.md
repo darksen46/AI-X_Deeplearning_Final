@@ -2,9 +2,9 @@
 
 ## Members
 
-* 위강현, 컴퓨터소프트웨어학부 1학년, 이메일
+* 위강현, 컴퓨터소프트웨어학부 1학년, kanghyun.we@hanyang.ac.kr
 * 천재민, 컴퓨터소프트웨어학부 1학년, darksen64@hanyang.ac.kr
-* 최정호, 컴퓨터소프트웨어학부 1학년, 이메일
+* 최정호, 컴퓨터소프트웨어학부 1학년, jungho31@hanyang.ac.kr
 
 ## Table of Contents
 
