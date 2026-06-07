@@ -73,11 +73,8 @@ VI. Conclusion
 | Validation Experiment | 모델 결과의 신뢰성과 일반화 가능성 검증       | Shuffled Label Sanity Check → Cross-Dataset Test                                        |
 | Additional Experiment | 한국어 개인 문체 일관성 검증 및 보조 지표 제안  | Profile 구성 → Personal Similarity / AI Similarity Proxy 계산 → Adjusted Suspicion Score 해석 |
 
-[여기에 전체 프로젝트 흐름도 이미지 삽입]
+<img width="1672" height="941" alt="image" src="https://github.com/user-attachments/assets/3340f76b-a088-4be0-9e19-efc30718b8fb" />
 
-```markdown
-![Overall Project Pipeline](results/figures/[여기에_파일명_삽입].png)
-```
 
 
 
