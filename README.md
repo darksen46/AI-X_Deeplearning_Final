@@ -58,6 +58,8 @@ VI. Conclusion
 
 # II. Datasets
 
+<img width="266" height="76" alt="image" src="https://github.com/user-attachments/assets/5ad489f0-ad01-4103-82c9-1fa507f2de06" />
+
 본 프로젝트에서는 두 종류의 데이터셋을 사용하였다.
 
 첫 번째는 공개 영어 AI 탐지 데이터셋이다. 이는 일반적인 AI 생성 텍스트 탐지 모델을 학습하고 평가하기 위해 사용하였다. 두 번째는 조원 직접 작성 한국어 데이터셋이다. 이는 특정 작성자의 기존 문체와 새 글 사이의 일관성을 검증하기 위해 사용하였다.
