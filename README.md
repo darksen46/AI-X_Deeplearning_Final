@@ -10,7 +10,7 @@
 
 ## Video / Audio Link
 
-[여기에 YouTube 또는 음성 녹화 링크 삽입]
+[여기에 YouTube 링크 넣기 -> TODO]
 
 
 ---
