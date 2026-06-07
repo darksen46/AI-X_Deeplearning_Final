@@ -394,15 +394,9 @@ AI_Human 데이터셋에서도 모델은 두 클래스를 안정적으로 구분
 
 실험 결과는 다음과 같다.
 
-| Dataset        | Accuracy | F1-score |
-| -------------- | -------: | -------: |
-| Training_Essay |    49.81 |    50.22 |
-| AI_Human       |    51.12 |    49.61 |
-
-두 데이터셋 모두 Accuracy와 F1-score가 약 50% 수준으로 하락하였다. 이는 기존 모델이 무작위 라벨을 학습한 것이 아니라, 실제 Human-written text와 AI-generated text 사이의 텍스트 패턴 차이를 학습했음을 보여준다.
-
 <img width="301" height="99" alt="image" src="https://github.com/user-attachments/assets/68eab29d-cd6b-4914-baaa-b165b7159d97" />
 
+두 데이터셋 모두 Accuracy와 F1-score가 약 50% 수준으로 하락하였다. 이는 기존 모델이 무작위 라벨을 학습한 것이 아니라, 실제 Human-written text와 AI-generated text 사이의 텍스트 패턴 차이를 학습했음을 보여준다.
 
 ---
 
