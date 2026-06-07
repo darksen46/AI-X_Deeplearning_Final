@@ -65,126 +65,20 @@ VI. Conclusion
 
 ## Overall Project Pipeline
 
-본 프로젝트는 단순히 하나의 모델을 학습시키는 방식이 아니라, 공개 영어 데이터셋 기반 일반 AI 탐지 실험, 모델 신뢰성 검증 실험, 한국어 개인 문체 일관성 검증 실험의 세 단계로 나누어 진행하였다.
+본 프로젝트는 크게 세 단계로 진행하였다. 첫 번째는 공개 영어 AI 탐지 데이터셋을 활용하여 일반 AI 탐지 모델을 구현하는 단계이고, 두 번째는 모델 성능의 신뢰성과 일반화 가능성을 확인하는 검증 단계이다. 마지막으로 조원들이 직접 작성한 한국어 글을 활용하여 개인 문체 일관성을 계산하고, 이를 바탕으로 Adjusted Suspicion Score를 제안하였다.
 
-### 1. Main Experiment: Public Dataset 기반 일반 AI 탐지 모델
-
-먼저 공개 영어 AI 탐지 데이터셋 2개를 활용하여 일반적인 AI 생성 텍스트 탐지 모델을 구현하였다.
-
-1. 공개 영어 AI 탐지 데이터셋 2개 수집
-
-   * Training_Essay_Data.csv
-   * AI_Human.csv
-
-2. 데이터셋 구조 및 라벨 분포 확인
-
-   * text 컬럼 확인
-   * generated 라벨 확인
-   * Human-written text / AI-generated text 분포 확인
-
-3. 결측값 확인 및 텍스트 전처리
-
-   * 결측값 제거
-   * 소문자 변환
-   * 불필요한 공백 제거
-   * 특수문자 정리
-
-4. 단어 수 기준 이상치 제거 및 균형 샘플링
-
-   * 너무 짧거나 긴 글 제거
-   * Human 2,000개, AI 2,000개로 균형 샘플링
-
-5. TF-IDF 기반 텍스트 벡터화
-
-   * unigram과 bigram을 활용하여 텍스트를 수치 벡터로 변환
-
-6. 머신러닝 분류 모델 학습 및 비교
-
-   * Logistic Regression
-   * Naive Bayes
-   * Random Forest
-   * Linear SVM
-
-7. 모델 성능 평가
-
-   * Accuracy
-   * Precision
-   * Recall
-   * F1-score
-   * Confusion Matrix
-
-### 2. Validation Experiment: 모델 신뢰성 및 일반화 성능 검증
-
-일반 AI 탐지 모델의 성능이 단순한 우연이나 데이터 누수로 인해 높게 나온 것이 아닌지 확인하기 위해 추가 검증 실험을 수행하였다.
-
-1. Shuffled Label Sanity Check
-
-   * 라벨을 무작위로 섞은 뒤 모델 성능이 약 50% 수준으로 하락하는지 확인하였다.
-   * 이를 통해 모델이 무작위 라벨이 아니라 실제 텍스트 패턴과 라벨 사이의 관계를 학습했는지 검증하였다.
-
-2. Cross-Dataset Test
-
-   * Training_Essay 데이터셋으로 학습한 모델을 AI_Human 데이터셋에 적용하였다.
-   * AI_Human 데이터셋으로 학습한 모델을 Training_Essay 데이터셋에 적용하였다.
-   * 이를 통해 모델이 특정 데이터셋 내부 패턴에만 의존하는 것이 아니라, 서로 다른 데이터셋에서도 일정 수준의 일반화 성능을 보이는지 확인하였다.
-
-### 3. Additional Experiment: Korean Personal Style Consistency Test
-
-영어 공개 데이터셋 기반 모델은 한국어 글에 직접 적용하지 않고, 조원들이 직접 작성한 한국어 글을 활용하여 별도의 개인 문체 일관성 검증 실험을 수행하였다.
-
-1. 조원 한국어 글 기반 개인 문체 profile 구성
-
-   * 조원별 기존 작성 글을 profile 데이터로 사용하였다.
-   * 조원별 새 글을 validation 데이터로 사용하였다.
-   * 동일 또는 유사 주제에 대해 AI가 작성한 글을 ai_comparison 데이터로 사용하였다.
-
-2. 한국어 텍스트 벡터화
-
-   * 한국어는 띄어쓰기와 형태소 분석의 영향을 받기 때문에 char-level TF-IDF를 적용하였다.
-
-3. 문체 유사도 계산
-
-   * Personal Similarity: 새 글이 해당 조원의 기존 문체와 얼마나 유사한지 계산하였다.
-   * AI Similarity Proxy: 새 글이 AI comparison 글들과 얼마나 유사한지 계산하였다.
-
-4. Adjusted Suspicion Score 계산 및 해석
-
-   * AI Similarity Proxy와 Personal Similarity를 결합하여 Adjusted Suspicion Score를 계산하였다.
-   * 이 점수는 AI 사용 여부를 단정하는 절대적 기준이 아니라, 일반 AI 탐지 결과와 개인 문체 일관성을 함께 고려하기 위한 보조 지표로 해석하였다.
-
-### 4. Pipeline Summary
-
-정리하면, 본 프로젝트의 전체 흐름은 다음과 같다.
-
-```text
-[Main Experiment]
-공개 영어 AI 탐지 데이터셋 수집
-→ 데이터 구조 및 라벨 분포 확인
-→ 결측값 확인 및 텍스트 전처리
-→ 이상치 제거 및 균형 샘플링
-→ TF-IDF 벡터화
-→ 4개 분류 모델 비교
-→ 성능 평가
-
-[Validation Experiment]
-Shuffled Label Sanity Check
-→ 모델 신뢰성 확인
-
-Cross-Dataset Test
-→ 데이터셋 간 일반화 성능 확인
-
-[Additional Experiment]
-조원 한국어 글 기반 개인 문체 profile 구성
-→ char-level TF-IDF 적용
-→ Personal Similarity / AI Similarity Proxy 계산
-→ Adjusted Suspicion Score 제안 및 해석
-```
+| Stage                 | Purpose                      | Main Process                                                                            |
+| --------------------- | ---------------------------- | --------------------------------------------------------------------------------------- |
+| Main Experiment       | 공개 영어 데이터셋 기반 일반 AI 탐지 모델 구현 | 데이터 확인 → 전처리 → 균형 샘플링 → TF-IDF → 모델 비교 → 성능 평가                                          |
+| Validation Experiment | 모델 결과의 신뢰성과 일반화 가능성 검증       | Shuffled Label Sanity Check → Cross-Dataset Test                                        |
+| Additional Experiment | 한국어 개인 문체 일관성 검증 및 보조 지표 제안  | Profile 구성 → Personal Similarity / AI Similarity Proxy 계산 → Adjusted Suspicion Score 해석 |
 
 [여기에 전체 프로젝트 흐름도 이미지 삽입]
 
 ```markdown
 ![Overall Project Pipeline](results/figures/[여기에_파일명_삽입].png)
 ```
+
 
 
 
