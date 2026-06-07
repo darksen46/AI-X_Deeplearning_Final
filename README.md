@@ -114,7 +114,10 @@ VI. Conclusion
 
 각 데이터셋은 크기가 매우 크기 때문에, Colab 환경에서 안정적으로 실험하기 위해 전처리 후 균형 샘플링을 수행하였다. 각 데이터셋에서 Human-written text 2,000개와 AI-generated text 2,000개를 추출하여 동일한 라벨 비율을 유지하였다.
 
-<img width="242" height="202" alt="image" src="https://github.com/user-attachments/assets/ed0cdc47-8703-41b8-8b41-e7d3d01f9638" />
+| Dataset | Human Samples | AI Samples | Total |
+|---|---:|---:|---:|
+| Training_Essay_Data | 2,000 | 2,000 | 4,000 |
+| AI_Human | 2,000 | 2,000 | 4,000 |
 
 
 
