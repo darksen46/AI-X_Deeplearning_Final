@@ -75,11 +75,8 @@ VI. Conclusion
 11. Personal Similarity와 AI Similarity Proxy 계산
 12. Adjusted Suspicion Score 제안 및 해석
 
-[여기에 전체 프로젝트 흐름도 이미지를 넣고 싶다면 삽입]
+<img width="1672" height="941" alt="image" src="https://github.com/user-attachments/assets/97ff0717-301c-47ee-a978-d2e18ecbf657" />
 
-```markdown
-![Overall Project Pipeline](results/figures/[여기에_파일명_삽입].png)
-```
 
 ---
 
