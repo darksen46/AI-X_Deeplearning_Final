@@ -1,4 +1,3 @@
-[G34_korean_team_dataset_package_FINAL.zip](https://github.com/user-attachments/files/28685974/G34_korean_team_dataset_package_FINAL.zip)
 # 개인 글쓰기 패턴 학습 기반 문체 일관성 검증 및 AI 사용 탐지 모델
 
 ## Members
