@@ -479,8 +479,8 @@ Role별 평균 결과는 다음과 같다.
 
 | Role          | Personal Similarity Score | AI Similarity Proxy | Adjusted Suspicion Score |
 | ------------- | ------------------------: | ------------------: | -----------------------: |
-| ai_comparison |                      7.62 |               77.54 |                    81.99 |
-| validation    |                     83.46 |                6.83 |                     9.75 |
+| ai_comparison |                     41.39 |               69.24 |                    66.05 |
+| validation    |                     65.28 |               44.76 |                    41.75 |
 
 [여기에 코랩 33단계 결과 이미지 삽입: Korean Personal Style Consistency Experiment]
 
@@ -490,24 +490,28 @@ Role별 평균 결과는 다음과 같다.
 
 Figure 6. Validation 글과 AI comparison 글의 Personal Similarity, AI Similarity Proxy, Adjusted Suspicion Score 비교.
 
-Validation 데이터는 조원이 직접 작성한 새 글에 해당한다. 이 데이터는 기존 profile 글과 높은 문체 유사도를 보였고, AI comparison 글과의 유사도는 낮게 나타났다. 그 결과 Adjusted Suspicion Score는 9.75점으로 낮게 나타났다.
+Validation 데이터는 조원이 직접 작성한 새 글에 해당한다. 이 데이터는 기존 profile 글과의 Personal Similarity Score가 평균 65.28점으로 나타났고, AI comparison 데이터의 평균 41.39점보다 높았다. 이는 조원이 직접 작성한 새 글이 기존 개인 문체 profile과 상대적으로 더 유사하게 나타났음을 의미한다.
 
-반면 AI comparison 데이터는 조원 profile과의 문체 유사도가 낮고, AI comparison 전체와의 유사도가 높게 나타났다. 이에 따라 Adjusted Suspicion Score는 81.99점으로 높게 나타났다.
+반면 AI comparison 데이터는 AI Similarity Proxy가 평균 69.24점으로 나타났고, validation 데이터의 평균 44.76점보다 높았다. 이는 AI가 작성한 비교군 글이 전체 AI comparison 글들과 더 유사한 표현 패턴을 보였음을 의미한다.
+
+최종적으로 Adjusted Suspicion Score는 validation 데이터가 평균 41.75점, ai_comparison 데이터가 평균 66.05점으로 나타났다. 즉, 실제 조원 작성 글과 AI 비교군 사이에 완전한 이분법적 구분이 나타난 것은 아니지만, AI comparison 데이터가 validation 데이터보다 더 높은 의심 점수를 보이는 경향을 확인할 수 있었다.
 
 조원별 결과는 다음과 같다.
 
 | Member | Role          | Personal Similarity Score | AI Similarity Proxy | Adjusted Suspicion Score |
 | ------ | ------------- | ------------------------: | ------------------: | -----------------------: |
-| 위강현    | ai_comparison |                      6.83 |               76.09 |                    81.21 |
-| 위강현    | validation    |                     83.46 |                6.83 |                     9.75 |
-| 천재민    | ai_comparison |                      7.62 |               78.06 |                    82.35 |
-| 천재민    | validation    |                     83.46 |                6.83 |                     9.75 |
-| 최정호    | ai_comparison |                      8.41 |               78.49 |                    82.42 |
-| 최정호    | validation    |                     83.46 |                6.83 |                     9.75 |
+| 위강현    | ai_comparison |                     32.86 |               68.76 |                    68.27 |
+| 위강현    | validation    |                     59.41 |               31.36 |                    34.12 |
+| 천재민    | ai_comparison |                     41.88 |               67.51 |                    64.69 |
+| 천재민    | validation    |                     80.48 |               40.58 |                    34.27 |
+| 최정호    | ai_comparison |                     49.42 |               71.45 |                    65.19 |
+| 최정호    | validation    |                     55.94 |               62.33 |                    56.85 |
 
-조원별로도 동일한 경향이 나타났다. Validation 글은 개인 문체 유사도가 높고 AI 유사도는 낮았으며, AI comparison 글은 개인 문체 유사도가 낮고 AI 유사도는 높았다.
+조원별 결과를 보면 위강현과 천재민의 경우 validation 데이터가 ai_comparison 데이터보다 낮은 Adjusted Suspicion Score를 보였다. 이는 개인 문체 유사도 기반 보정 방식이 실제 조원 글과 AI 비교군 사이의 차이를 어느 정도 반영할 수 있음을 보여준다.
 
-이 결과는 개인 문체 유사도와 AI 유사도를 결합한 Adjusted Suspicion Score가 AI 사용 여부를 단정하는 기준은 아니지만, 기존 AI 탐지 결과를 보완하는 보조 지표로 활용될 가능성이 있음을 보여준다.
+다만 최정호의 validation 데이터는 AI Similarity Proxy가 상대적으로 높게 나타났다. 이는 해당 validation 글이 정돈된 설명문 형태를 띠고 있어 AI comparison 글과도 유사하게 측정되었기 때문으로 해석할 수 있다. 이 결과는 개인 문체 기반 방식이 AI 사용 여부를 완벽하게 판정하는 도구가 아니라, 추가 확인을 돕는 보조 지표로 사용되어야 함을 보여준다.
+
+따라서 본 실험은 개인 문체 유사도와 AI 유사도를 결합한 Adjusted Suspicion Score가 기존 AI 탐지 결과를 보완하는 해석 가능한 참고 지표로 활용될 가능성을 보여준다.
 
 ---
 
