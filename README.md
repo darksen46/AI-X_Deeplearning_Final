@@ -545,7 +545,7 @@ AI-generated text detection 연구는 사람이 작성한 글과 AI가 생성한
 - Scikit-learn Documentation: https://scikit-learn.org/stable/
 - TfidfVectorizer Documentation: https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html
 - LinearSVC Documentation: https://scikit-learn.org/stable/modules/generated/sklearn.svm.LinearSVC.html
-- Kaggle Dataset 1: https://www.kaggle.com/datasets/sunilthite/llm-detect-ai-generated-text-dataset?utm_source=chatgpt.com
+- Kaggle Dataset 1: https://www.kaggle.com/datasets/sunilthite/llm-detect-ai-generated-text-dataset
 - Kaggle Dataset 2: https://www.kaggle.com/datasets/shanegerami/ai-vs-human-text/data
 ```
 
