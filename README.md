@@ -2,11 +2,12 @@
 
 ## Members
 
-위강현, 컴퓨터소프트웨어학부 1학년, [kanghyun.we@hanyang.ac.kr](mailto:kanghyun.we@hanyang.ac.kr)
+| Name | Department / Year | Email                                                         | Role                            |
+| ---- | ----------------- | ------------------------------------------------------------- | ------------------------------- |
+| 위강현  | 컴퓨터소프트웨어학부 1학년    | [kanghyun.we@hanyang.ac.kr](mailto:kanghyun.we@hanyang.ac.kr) | 데이터셋 수집 및 정리, 조원 글 작성 데이터 관리    |
+| 천재민  | 컴퓨터소프트웨어학부 1학년    | [darksen64@hanyang.ac.kr](mailto:darksen64@hanyang.ac.kr)     | 모델 구현, 전처리 코드 작성, 실험 설계 및 결과 분석 |
+| 최정호  | 컴퓨터소프트웨어학부 1학년    | [jungho31@hanyang.ac.kr](mailto:jungho31@hanyang.ac.kr)       | 결과 시각화, 블로그 작성, 영상 또는 음성 녹화 준비  |
 
-천재민, 컴퓨터소프트웨어학부 1학년, [darksen64@hanyang.ac.kr](mailto:darksen64@hanyang.ac.kr)
-
-최정호, 컴퓨터소프트웨어학부 1학년, [jungho31@hanyang.ac.kr](mailto:jungho31@hanyang.ac.kr)
 
 ## Video / Audio Link
 
@@ -514,9 +515,3 @@ AI-generated text detection 연구는 사람이 작성한 글과 AI가 생성한
 3. GPT, Claude, Gemini 등 다양한 생성형 AI 모델의 글을 비교한다.
 4. 사람이 AI 글을 수정한 mixed text를 추가하여 더 현실적인 상황을 반영한다.
 5. 개인 문체 유사도와 AI 탐지 점수의 가중치를 데이터 기반으로 최적화한다.
-
-## Role Distribution
-
-위강현: 데이터셋 수집 및 정리, 조원 글 작성 데이터 관리
-천재민: 모델 구현, 전처리 코드 작성, 실험 설계 및 결과 분석
-최정호: 결과 시각화, 블로그 작성, 영상 또는 음성 녹화 준비
