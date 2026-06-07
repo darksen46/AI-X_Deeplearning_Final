@@ -1,3 +1,4 @@
+[G34_korean_team_dataset_package_FINAL.zip](https://github.com/user-attachments/files/28685974/G34_korean_team_dataset_package_FINAL.zip)
 # 개인 글쓰기 패턴 학습 기반 문체 일관성 검증 및 AI 사용 탐지 모델
 
 ## Members
@@ -160,11 +161,18 @@ VI. Conclusion
 
 ## Code/Data Repository
 
-Colab file: []  
+Code file: [AI+X_딥러닝_34조_코드_모음집.ipynb](https://github.com/user-attachments/files/28685999/AI%2BX_._34._._.ipynb) 
 
-Colab Notebook: []
+Data files: 
 
-Data files: []
+[ai_human_sample_preprocessed.csv](https://github.com/user-attachments/files/28686114/ai_human_sample_preprocessed.csv)
+
+
+[essay_sample_preprocessed.csv](https://github.com/user-attachments/files/28686103/essay_sample_preprocessed.csv)
+
+
+[G34_korean_team_dataset_package_FINAL.zip](https://github.com/user-attachments/files/28686100/G34_korean_team_dataset_package_FINAL.zip)
+
 
 ---
 
@@ -532,16 +540,14 @@ AI-generated text detection 연구는 사람이 작성한 글과 AI가 생성한
 
 ## References
 
-[여기에 참고한 Kaggle 데이터셋, Scikit-learn 문서, 관련 논문 또는 블로그 URL 추가]
-
-예시:
+[여기에 참고한 Kaggle 데이터셋, Scikit-learn 문서, 관련 논문 또는 블로그 URL 더 추가하기]
 
 ```markdown
 - Scikit-learn Documentation: https://scikit-learn.org/stable/
 - TfidfVectorizer Documentation: https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html
 - LinearSVC Documentation: https://scikit-learn.org/stable/modules/generated/sklearn.svm.LinearSVC.html
-- Kaggle Dataset 1: [여기에 Training_Essay_Data 출처 링크]
-- Kaggle Dataset 2: [여기에 AI_Human 출처 링크]
+- Kaggle Dataset 1: https://www.kaggle.com/datasets/sunilthite/llm-detect-ai-generated-text-dataset?utm_source=chatgpt.com
+- Kaggle Dataset 2: https://www.kaggle.com/datasets/shanegerami/ai-vs-human-text/data
 ```
 
 ---
