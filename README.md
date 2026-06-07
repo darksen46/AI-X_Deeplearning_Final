@@ -112,20 +112,13 @@ VI. Conclusion
 |     0 | Human-written text |
 |     1 | AI-generated text  |
 
-각 데이터셋은 크기가 매우 크기 때문에, Colab 환경에서 안정적으로 실험하기 위해 전처리 후 균형 샘플링을 수행하였다.
+각 데이터셋은 크기가 매우 크기 때문에, Colab 환경에서 안정적으로 실험하기 위해 전처리 후 균형 샘플링을 수행하였다. 각 데이터셋에서 Human-written text 2,000개와 AI-generated text 2,000개를 추출하여 동일한 라벨 비율을 유지하였다.
 
 | Dataset             | Human Samples | AI Samples | Total |
 | ------------------- | ------------: | ---------: | ----: |
 | Training_Essay_Data |         2,000 |      2,000 | 4,000 |
 | AI_Human            |         2,000 |      2,000 | 4,000 |
 
-[여기에 코랩 데이터셋 불러오기 결과 캡처를 넣고 싶다면 삽입]
-
-```markdown
-![Dataset Loading Result](results/figures/[여기에_파일명_삽입].png)
-```
-
-다만 데이터셋 크기와 라벨 분포는 표로 충분히 설명 가능하므로, 본문에서는 표 중심으로 정리하였다.
 
 ## 2. Korean Personal Writing Style Dataset
 
@@ -186,7 +179,7 @@ VI. Conclusion
 | Training_Essay_Data |            0 |                 0 |
 | AI_Human            |            0 |                 0 |
 
-한국어 Template 데이터셋의 경우 `text` 컬럼에 결측값 45개가 존재하였다. 이는 조원들이 직접 작성해야 하는 빈 입력 칸이므로 정상적인 구조로 판단하였다. 코드 검증 단계에서는 결측값이 없는 Korean Demo 또는 실제 작성 완료 데이터셋을 사용하였다.
+한국어 Template 데이터셋의 경우 text 컬럼에 결측값 45개가 존재하였다. 이는 조원들이 직접 작성해야 하는 빈 입력 칸이므로 정상적인 구조로 판단하였다. 최종 실험에서는 조원 작성이 완료된 Korean Final 데이터셋을 사용하였다.
 
 ### 3. Text Preprocessing
 
@@ -350,11 +343,8 @@ Adjusted Suspicion Score
 | Naive Bayes         |             92.22 |                   95.40 |
 | Random Forest       |             97.00 |                   97.78 |
 
-[여기에 코랩 23단계 결과 이미지 삽입: Model Performance Comparison by Dataset]
+<img width="889" height="490" alt="image" src="https://github.com/user-attachments/assets/8ef1d72a-6315-4626-9a53-1af5e00d6b0e" />
 
-```markdown
-![Model F1-score Comparison](results/figures/model_f1_comparison_public_datasets.png)
-```
 
 Figure 1. 두 공개 데이터셋에서 모델별 F1-score를 비교한 결과, Linear SVM이 가장 안정적인 성능을 보였다.
 
@@ -366,11 +356,8 @@ Linear SVM은 두 데이터셋 모두에서 가장 안정적인 성능을 보였
 
 ### Training_Essay Dataset
 
-[여기에 코랩 24단계 첫 번째 결과 이미지 삽입: Training_Essay Confusion Matrix]
+<img width="566" height="470" alt="image" src="https://github.com/user-attachments/assets/dfb725ab-af24-4be2-95fb-b67d03af6db9" />
 
-```markdown
-![Confusion Matrix - Training Essay](results/figures/confusion_matrix_Training_Essay_Linear_SVM.png)
-```
 
 Figure 2. Training_Essay 데이터셋에서 Linear SVM의 Confusion Matrix.
 
@@ -385,11 +372,8 @@ Training_Essay 데이터셋에서 Linear SVM은 총 1,600개의 테스트 데이
 
 ### AI_Human Dataset
 
-[여기에 코랩 24단계 두 번째 결과 이미지 삽입: AI_Human Confusion Matrix]
+<img width="566" height="470" alt="image" src="https://github.com/user-attachments/assets/b8de5750-af32-4393-bc69-22874d3b3d3f" />
 
-```markdown
-![Confusion Matrix - AI Human](results/figures/confusion_matrix_AI_Human_Linear_SVM.png)
-```
 
 Figure 3. AI_Human 데이터셋에서 Linear SVM의 Confusion Matrix.
 
@@ -417,11 +401,8 @@ AI_Human 데이터셋에서도 모델은 두 클래스를 안정적으로 구분
 
 두 데이터셋 모두 Accuracy와 F1-score가 약 50% 수준으로 하락하였다. 이는 기존 모델이 무작위 라벨을 학습한 것이 아니라, 실제 Human-written text와 AI-generated text 사이의 텍스트 패턴 차이를 학습했음을 보여준다.
 
-[선택 사항: 코랩 25단계 출력 캡처를 넣고 싶다면 여기에 삽입. 단, 필수는 아님]
+<img width="301" height="99" alt="image" src="https://github.com/user-attachments/assets/68eab29d-cd6b-4914-baaa-b165b7159d97" />
 
-```markdown
-![Shuffled Label Sanity Check](results/figures/[여기에_파일명_삽입].png)
-```
 
 ---
 
@@ -445,11 +426,8 @@ Cross-Dataset Test에서도 F1-score가 95% 이상으로 나타났다. 이는 �
 
 ### Training_Essay → AI_Human
 
-[여기에 코랩 26단계 첫 번째 결과 이미지 삽입: Cross-Dataset Training_Essay to AI_Human]
+<img width="575" height="470" alt="image" src="https://github.com/user-attachments/assets/69b09a86-c079-4505-9d2c-6208ec03f41c" />
 
-```markdown
-![Cross-Dataset Test - Training Essay to AI Human](results/figures/cross_dataset_Training_Essay_to_AI_Human.png)
-```
 
 Figure 4. Training_Essay로 학습한 모델을 AI_Human 데이터셋에 적용한 Cross-Dataset Confusion Matrix.
 
@@ -457,11 +435,8 @@ Training_Essay로 학습하여 AI_Human을 테스트했을 때는 AI 글을 Huma
 
 ### AI_Human → Training_Essay
 
-[여기에 코랩 26단계 두 번째 결과 이미지 삽입: Cross-Dataset AI_Human to Training_Essay]
+<img width="575" height="470" alt="image" src="https://github.com/user-attachments/assets/f065ba20-3988-49a5-955b-9c8b868437dc" />
 
-```markdown
-![Cross-Dataset Test - AI Human to Training Essay](results/figures/cross_dataset_AI_Human_to_Training_Essay.png)
-```
 
 Figure 5. AI_Human으로 학습한 모델을 Training_Essay 데이터셋에 적용한 Cross-Dataset Confusion Matrix.
 
@@ -482,11 +457,8 @@ Role별 평균 결과는 다음과 같다.
 | ai_comparison |                     41.39 |               69.24 |                    66.05 |
 | validation    |                     65.28 |               44.76 |                    41.75 |
 
-[여기에 코랩 33단계 결과 이미지 삽입: Korean Personal Style Consistency Experiment]
+<img width="790" height="490" alt="image" src="https://github.com/user-attachments/assets/173fa3e6-8465-4e64-a758-a4599082e0bd" />
 
-```markdown
-![Korean Personal Style Consistency Experiment](results/figures/korean_personal_style_role_summary.png)
-```
 
 Figure 6. Validation 글과 AI comparison 글의 Personal Similarity, AI Similarity Proxy, Adjusted Suspicion Score 비교.
 
@@ -579,7 +551,7 @@ AI-generated text detection 연구는 사람이 작성한 글과 AI가 생성한
 
 그러나 공개 영어 데이터셋으로 학습한 모델은 특정 작성자의 기존 글쓰기 패턴을 고려하지 못하며, 한국어 글에 직접 적용하기도 어렵다. 따라서 본 프로젝트에서는 별도의 한국어 조원 작성 데이터셋을 활용하여 개인 문체 일관성 검증 실험을 수행하였다. 조원별 기존 글을 profile로 설정하고, 새 글과 AI 비교군이 해당 profile과 얼마나 유사한지 cosine similarity 기반으로 계산하였다.
 
-실험 결과, 조원이 직접 작성한 validation 글은 기존 profile과 높은 유사도를 보였고 AI comparison과의 유사도는 낮게 나타났다. 반대로 AI comparison 글은 개인 profile과의 유사도는 낮고 AI comparison과의 유사도는 높게 나타났다. 이를 바탕으로 AI Similarity Proxy와 Personal Similarity를 결합한 Adjusted Suspicion Score를 계산하였다.
+실험 결과, validation 데이터는 ai_comparison 데이터보다 평균적으로 높은 Personal Similarity Score를 보였고, ai_comparison 데이터는 validation 데이터보다 높은 AI Similarity Proxy와 Adjusted Suspicion Score를 보였다. 다만 모든 샘플이 명확하게 구분된 것은 아니며, 일부 사람 글은 AI comparison 글과 유사하게 측정되었다. 이는 Adjusted Suspicion Score가 AI 사용 여부를 단정하는 절대 기준이 아니라, 일반 AI 유사도와 개인 문체 일관성을 함께 고려하는 보조 지표로 해석되어야 함을 보여준다.
 
 본 프로젝트의 Adjusted Suspicion Score는 AI 사용 여부를 단정하기 위한 절대적 기준이 아니다. 대신 일반 AI 탐지 결과와 개인 문체 일관성을 함께 고려하는 보조 지표로 활용될 수 있다. 특히 일반 AI 탐지 모델이 높은 AI 가능성을 보이더라도, 해당 글이 작성자의 기존 문체와 매우 유사하다면 단순히 AI 사용으로 단정하기 어렵다. 반대로 AI 가능성이 중간 수준이더라도 개인 문체와 크게 다르다면 추가 확인이 필요할 수 있다.
 
