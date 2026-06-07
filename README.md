@@ -157,6 +157,11 @@ VI. Conclusion
 
 첫 번째는 공개 영어 데이터셋을 활용한 일반 AI 탐지 모델 구현이다. 두 번째는 조원 한국어 데이터셋을 활용한 개인 문체 일관성 검증 실험이다.
 
+## Code/Data Repository
+
+Colab file: []  
+Colab Notebook: []
+Data file: []
 ---
 
 ## Experiment 1. Public Dataset 기반 일반 AI 탐지 모델
