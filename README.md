@@ -12,11 +12,6 @@
 
 [여기에 YouTube 또는 음성 녹화 링크 삽입]
 
-예시:
-
-```text
-https://www.youtube.com/...
-```
 
 ---
 
