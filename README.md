@@ -163,7 +163,8 @@ Colab file: []
 
 Colab Notebook: []
 
-Data file: []
+Data files: []
+
 ---
 
 ## Experiment 1. Public Dataset 기반 일반 AI 탐지 모델
