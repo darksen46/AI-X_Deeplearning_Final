@@ -2,167 +2,519 @@
 
 ## Members
 
-* 위강현, 컴퓨터소프트웨어학부 1학년, kanghyun.we@hanyang.ac.kr
-* 천재민, 컴퓨터소프트웨어학부 1학년, darksen64@hanyang.ac.kr
-* 최정호, 컴퓨터소프트웨어학부 1학년, jungho31@hanyang.ac.kr
+위강현, 컴퓨터소프트웨어학부 1학년, [kanghyun.we@hanyang.ac.kr](mailto:kanghyun.we@hanyang.ac.kr)
+천재민, 컴퓨터소프트웨어학부 1학년, [darksen64@hanyang.ac.kr](mailto:darksen64@hanyang.ac.kr)
+최정호, 컴퓨터소프트웨어학부 1학년, [jungho31@hanyang.ac.kr](mailto:jungho31@hanyang.ac.kr)
+
+## Video / Audio Link
+
+추후 삽입 예정
 
 ## Table of Contents
 
-1. Proposal
-2. Datasets
-3. Methodology
-4. Evaluation & Analysis
-5. Related Work
-6. Conclusion
+I. Proposal
+II. Datasets
+III. Methodology
+IV. Evaluation & Analysis
+V. Related Work
+VI. Conclusion
 
 ---
 
-## I. Proposal
+# I. Proposal
 
-### Motivation
+## Motivation
 
-최근 ChatGPT와 같은 생성형 AI는 과제, 자기소개서, 블로그 글쓰기 등 다양한 글쓰기 영역에서 널리 사용되고 있다. 그러나 AI가 작성한 글은 문장 구조, 어휘 사용, 표현 방식에서 사람의 글과 다른 특징을 보일 수 있다. 특히 글쓰기 결과물에서 AI 사용 여부를 판단하는 문제는 교육, 평가, 저작권, 학습 윤리 측면에서 중요한 이슈가 되고 있다.
+최근 ChatGPT와 같은 생성형 AI는 과제, 자기소개서, 블로그 글쓰기 등 다양한 글쓰기 영역에서 널리 사용되고 있다. 이에 따라 교육 현장에서는 학생이 직접 작성한 글과 AI가 생성한 글을 구분하는 문제가 중요한 이슈가 되고 있다. 실제로 GPT 탐지기나 카피킬러와 같은 도구는 특정 글이 AI에 의해 작성되었을 가능성을 수치로 제시하지만, 이러한 점수만으로 AI 사용 여부를 단정하기에는 한계가 있다.
 
-본 프로젝트는 개인의 기존 글쓰기 패턴과 AI 생성 글의 문체적 차이를 분석하고, 이를 기반으로 AI 사용 가능성을 탐지하는 모델을 구현하는 것을 목표로 한다. 단순히 AI가 작성한 글을 탐지하는 것뿐만 아니라, 사람의 글과 AI 글 사이에서 나타나는 문장 길이, 단어 사용, 어휘 다양도 등의 차이를 확인하고자 한다.
+기존 AI 탐지기는 일반적으로 글 자체의 문장 구조, 단어 사용, 표현 패턴 등을 바탕으로 AI 생성 가능성을 판단한다. 그러나 실제 작성자는 사람마다 고유한 문체와 글쓰기 습관을 가지고 있다. 어떤 사람은 원래 문장을 정돈되게 쓰고, 어떤 사람은 구어체에 가까운 표현을 많이 사용한다. 따라서 단순히 “이 글이 AI처럼 보이는가?”만 판단하면, 원래 문체가 정돈된 사람의 글이 AI 글로 오탐될 가능성이 있다.
 
-### Goal
+본 프로젝트는 이러한 문제의식에서 출발하였다. 기존 AI 탐지 방식이 글 자체의 AI 생성 가능성만 판단한다면, 본 프로젝트는 여기에 작성자의 기존 글쓰기 패턴과의 문체 일관성을 함께 고려하는 방식을 실험적으로 제안한다. 즉, 본 프로젝트의 핵심 질문은 다음과 같다.
 
-본 프로젝트의 최종 목표는 사람 작성 글과 AI 생성 글을 수집한 뒤, 텍스트 전처리와 특징 추출을 수행하고, 머신러닝 기반 분류 모델을 적용하여 AI 생성 여부를 예측하는 것이다.
+* 이 글이 일반적인 AI 생성 글처럼 보이는가?
+* 이 글이 기존 작성자의 문체와 얼마나 유사한가?
+* AI 유사도와 개인 문체 유사도를 함께 고려하면 더 해석 가능한 AI 의심 점수를 만들 수 있는가?
+
+## Goal
+
+본 프로젝트의 목표는 공개 AI 텍스트 데이터셋을 활용하여 일반 AI 탐지 모델을 구현하고, 조원 직접 작성 한국어 데이터셋을 활용하여 개인 문체 일관성 검증 방식을 실험하는 것이다.
 
 구체적인 목표는 다음과 같다.
 
-* 사람 글과 AI 생성 글 데이터셋 구축
-* 문장 길이, 단어 수, 어휘 다양도 등 문체 특징 추출
-* TF-IDF 기반 텍스트 벡터화 수행
-* Logistic Regression, Random Forest 등 분류 모델 적용
-* 모델 성능 평가 및 문체 차이 분석
+1. 공개 영어 AI 탐지 데이터셋을 불러오고 구조를 분석한다.
+2. 결측값 제거, 텍스트 정제, 단어 수 기반 이상치 제거 등 전처리를 수행한다.
+3. TF-IDF 기반 텍스트 벡터화를 적용한다.
+4. Logistic Regression, Naive Bayes, Random Forest, Linear SVM 모델을 학습하고 비교한다.
+5. Accuracy, Precision, Recall, F1-score, Confusion Matrix를 통해 모델 성능을 평가한다.
+6. Shuffled Label Sanity Check를 통해 모델이 우연히 높은 성능을 보인 것이 아닌지 확인한다.
+7. Cross-Dataset Test를 통해 서로 다른 공개 데이터셋 간 일반화 성능을 확인한다.
+8. 조원 직접 작성 한국어 글을 기반으로 개인 문체 유사도를 계산한다.
+9. AI 유사도와 개인 문체 유사도를 결합한 Adjusted Suspicion Score를 제안한다.
 
 ---
 
-## II. Datasets
+# II. Datasets
 
-본 프로젝트에서는 사람 작성 글과 AI 생성 글을 비교하기 위해 직접 데이터셋을 구축할 예정이다.
+본 프로젝트에서는 두 종류의 데이터셋을 사용하였다.
 
-### Dataset Structure
+첫 번째는 공개 영어 AI 탐지 데이터셋이다. 이는 일반적인 AI 생성 텍스트 탐지 모델을 학습하고 평가하기 위해 사용하였다. 두 번째는 조원 직접 작성 한국어 데이터셋이다. 이는 특정 작성자의 기존 문체와 새 글 사이의 일관성을 검증하기 위해 사용하였다.
 
-| Label | Type       | Description              |
-| ----- | ---------- | ------------------------ |
-| 0     | Human Text | 조원들이 직접 작성한 글            |
-| 1     | AI Text    | 동일한 주제에 대해 생성형 AI가 작성한 글 |
+## 1. Public English AI Detection Datasets
 
-### Data Collection Plan
+공개 영어 데이터셋으로는 다음 두 개를 사용하였다.
 
-글쓰기 주제는 다음과 같이 구성할 예정이다.
+| Dataset                 | Description                                            | Label     |
+| ----------------------- | ------------------------------------------------------ | --------- |
+| Training_Essay_Data.csv | 사람 작성 essay와 AI 생성 essay로 구성된 영어 텍스트 데이터셋              | generated |
+| AI_Human.csv            | Human-written text와 AI-generated text로 구성된 영어 텍스트 데이터셋 | generated |
 
-* 인공지능의 장단점
-* 나의 진로 목표
-* 대학 생활에서 중요한 역량
-* 최근 사회 문제에 대한 의견
-* 기억에 남는 경험
-* 기술 발전이 사회에 미치는 영향
+두 데이터셋 모두 다음과 같은 기본 구조를 가진다.
 
-각 주제에 대해 사람 글과 AI 글을 모두 수집하여, 주제 차이가 아닌 문체 차이를 비교할 수 있도록 한다.
+| Column    | Description                                     |
+| --------- | ----------------------------------------------- |
+| text      | 글 본문                                            |
+| generated | 라벨. 0은 Human-written text, 1은 AI-generated text |
 
-### Data Format
+라벨은 다음과 같이 해석하였다.
 
-최종 데이터는 CSV 파일 형태로 정리할 예정이다.
+| Label | Meaning            |
+| ----: | ------------------ |
+|     0 | Human-written text |
+|     1 | AI-generated text  |
 
-| text      | label |
-| --------- | ----- |
-| 사람이 작성한 글 | 0     |
-| AI가 생성한 글 | 1     |
+각 데이터셋은 크기가 매우 크기 때문에, Colab 환경에서 안정적으로 실험하기 위해 전처리 후 균형 샘플링을 수행하였다.
+
+| Dataset             | Human Samples | AI Samples | Total |
+| ------------------- | ------------: | ---------: | ----: |
+| Training_Essay_Data |         2,000 |      2,000 | 4,000 |
+| AI_Human            |         2,000 |      2,000 | 4,000 |
+
+## 2. Korean Personal Writing Style Dataset
+
+영어 공개 데이터셋은 일반 AI 탐지 모델을 구현하는 데 사용하였지만, 영어 모델을 한국어 글에 직접 적용하지는 않았다. TF-IDF 기반 모델은 학습 데이터의 단어와 표현 패턴을 중심으로 작동하기 때문에, 영어 데이터로 학습한 모델을 한국어 글에 적용하면 언어 차이로 인한 왜곡이 발생할 수 있기 때문이다.
+
+따라서 한국어 데이터셋은 별도의 개인 문체 일관성 검증 실험에 사용하였다. 조원 3명이 직접 작성한 한국어 글을 기반으로 개인별 writing profile을 구성하고, 새 글이 기존 작성자의 문체와 얼마나 유사한지 확인하였다.
+
+한국어 데이터셋은 다음과 같이 구성하였다.
+
+| Data Type     | Description                   |
+| ------------- | ----------------------------- |
+| profile       | 조원의 기존 글쓰기 패턴을 만들기 위한 글       |
+| validation    | 조원이 직접 작성한 검증용 새 글            |
+| ai_comparison | 동일 또는 유사 주제에 대해 AI가 작성한 비교군 글 |
+
+조원별 데이터 구성은 다음과 같다.
+
+| Member | Profile Texts | Validation Texts | AI Comparison Texts |
+| ------ | ------------: | ---------------: | ------------------: |
+| 위강현    |            10 |                5 |                  15 |
+| 천재민    |            10 |                5 |                  15 |
+| 최정호    |            10 |                5 |                  15 |
+| Total  |            30 |               15 |                  45 |
+
+한국어 실험에서는 단순히 사람 글과 AI 글을 분류하는 것이 아니라, 각 조원의 기존 글과 새 글 사이의 문체 유사도를 계산하였다.
 
 ---
 
-## III. Methodology
+# III. Methodology
 
-본 프로젝트는 다음 절차로 진행된다.
+본 프로젝트는 크게 두 개의 실험으로 구성된다.
 
-### 1. Text Data Collection
+첫 번째는 공개 영어 데이터셋을 활용한 일반 AI 탐지 모델 구현이다. 두 번째는 조원 한국어 데이터셋을 활용한 개인 문체 일관성 검증 실험이다.
 
-사람이 직접 작성한 글과 AI가 생성한 글을 수집한다. 같은 주제에 대해 두 종류의 글을 모두 확보하여 비교 가능성을 높인다.
+---
 
-### 2. Text Preprocessing
+## Experiment 1. Public Dataset 기반 일반 AI 탐지 모델
 
-수집한 텍스트에 대해 전처리를 수행한다.
+### 1. Data Loading
+
+먼저 두 개의 영어 공개 데이터셋을 불러왔다.
+
+* Training_Essay_Data.csv
+* AI_Human.csv
+
+각 데이터셋의 주요 컬럼은 `text`와 `generated`이며, `generated`는 AI 생성 여부를 나타내는 라벨이다.
+
+### 2. Missing Value Check
+
+두 영어 데이터셋 모두 `text`와 `generated` 컬럼에 결측값이 존재하지 않았다.
+
+| Dataset             | text Missing | generated Missing |
+| ------------------- | -----------: | ----------------: |
+| Training_Essay_Data |            0 |                 0 |
+| AI_Human            |            0 |                 0 |
+
+### 3. Text Preprocessing
+
+영어 텍스트에 대해 다음 전처리를 수행하였다.
+
+* 소문자 변환
+* 불필요한 공백 제거
+* 기본 영어 문자, 숫자, 문장부호 외 특수문자 제거
+* 단어 수 계산
+* 너무 짧거나 긴 글 제거
+
+너무 짧은 글은 모델이 충분한 정보를 얻기 어렵고, 너무 긴 글은 학습에 과도한 영향을 줄 수 있기 때문에 단어 수 기준으로 이상치를 제거하였다.
+
+본 실험에서는 다음 기준을 적용하였다.
+
+| Criterion          | Value |
+| ------------------ | ----: |
+| Minimum Word Count |    50 |
+| Maximum Word Count |  1000 |
+
+### 4. Balanced Sampling
+
+두 데이터셋은 라벨 분포와 데이터 크기가 다르기 때문에, 모델 학습의 균형을 맞추기 위해 각 라벨에서 동일한 수의 샘플을 추출하였다.
+
+| Dataset             | Human |    AI | Total |
+| ------------------- | ----: | ----: | ----: |
+| Training_Essay_Data | 2,000 | 2,000 | 4,000 |
+| AI_Human            | 2,000 | 2,000 | 4,000 |
+
+### 5. Train-Test Split
+
+모델 평가를 위해 학습 데이터와 테스트 데이터를 6:4 비율로 분리하였다.
+
+| Split | Ratio |
+| ----- | ----: |
+| Train |   60% |
+| Test  |   40% |
+
+라벨 비율이 학습셋과 테스트셋에서 동일하게 유지되도록 stratify 옵션을 적용하였다.
+
+### 6. Text Vectorization
+
+텍스트 데이터를 머신러닝 모델에 입력하기 위해 TF-IDF Vectorizer를 사용하였다. TF-IDF는 특정 문서에서 자주 등장하지만 전체 문서에서는 상대적으로 덜 등장하는 단어에 높은 가중치를 부여하는 방식이다.
+
+본 프로젝트에서는 unigram과 bigram을 함께 사용하였다.
+
+| Parameter    | Value  |
+| ------------ | ------ |
+| max_features | 5000   |
+| ngram_range  | (1, 2) |
+
+### 7. Classification Models
+
+다음 네 가지 모델을 비교하였다.
+
+| Model               | Description                  |
+| ------------------- | ---------------------------- |
+| Logistic Regression | 선형 분류 기반의 기본적인 분류 모델         |
+| Naive Bayes         | 텍스트 분류에서 자주 사용되는 확률 기반 모델    |
+| Random Forest       | 여러 결정 트리를 결합한 앙상블 모델         |
+| Linear SVM          | 고차원 희소 텍스트 데이터에 강한 선형 SVM 모델 |
+
+---
+
+## Experiment 2. Korean Personal Writing Consistency Test
+
+영어 공개 데이터셋은 일반 AI 탐지 모델의 작동 방식을 확인하는 데 사용하였다. 그러나 한국어 조원 데이터셋은 영어 모델에 직접 입력하지 않고, 별도의 문체 일관성 검증 방식으로 분석하였다.
+
+### 1. Korean Text Preprocessing
+
+한국어 텍스트에 대해서는 다음 전처리를 수행하였다.
 
 * 불필요한 공백 제거
-* 특수문자 제거
-* 문장 단위 분리
-* 결측값 제거
-* 라벨링 확인
+* 한글, 영문, 숫자, 기본 문장부호 외 문자 제거
+* 글자 수 계산
+* 단어 수 계산
 
-### 3. Feature Extraction
+한국어는 영어와 달리 띄어쓰기와 형태소 분석의 영향을 크게 받기 때문에, 단어 단위보다 문자 단위 n-gram이 더 안정적일 수 있다. 따라서 한국어 문체 유사도 계산에는 char-level TF-IDF를 사용하였다.
 
-텍스트의 문체적 특징을 수치화한다.
+### 2. Personal Profile Construction
 
-* 전체 단어 수
-* 문장 수
-* 평균 문장 길이
-* 어휘 다양도
-* 반복 표현 빈도
+각 조원별로 profile 글 10개를 모아 개인 문체 profile을 구성하였다. 이후 validation 글과 AI comparison 글이 해당 조원의 profile과 얼마나 유사한지 cosine similarity로 계산하였다.
 
-### 4. Text Vectorization
+### 3. Personal Similarity
 
-텍스트 데이터를 모델에 입력하기 위해 TF-IDF Vectorizer를 사용한다. TF-IDF는 문서 내에서 자주 등장하지만 전체 문서에서는 상대적으로 덜 등장하는 단어에 높은 가중치를 부여하는 방식이다.
+Personal Similarity는 새 글이 해당 조원의 기존 글쓰기 패턴과 얼마나 유사한지를 나타낸다.
 
-### 5. Classification Model
+계산 방식은 다음과 같다.
 
-AI 생성 여부를 예측하기 위해 다음 모델을 사용할 예정이다.
+1. 조원별 profile 글을 TF-IDF 벡터로 변환한다.
+2. 평가 대상 글도 동일한 vectorizer로 변환한다.
+3. 평가 대상 글과 해당 조원의 profile 글들 사이의 cosine similarity를 계산한다.
+4. 여러 profile 글과의 유사도 평균을 Personal Similarity로 사용한다.
 
-* Logistic Regression
-* Random Forest Classifier
+### 4. AI Similarity Proxy
 
-추가적으로 시간이 허용될 경우, BERT 계열 모델을 활용한 딥러닝 기반 텍스트 분류도 검토할 예정이다.
+AI Similarity Proxy는 평가 대상 글이 AI comparison 글들과 얼마나 유사한지를 나타낸다. 이는 영어 기반 AI 탐지 모델을 한국어에 직접 적용하지 않기 위한 대체 지표이다.
 
----
+계산 방식은 다음과 같다.
 
-## IV. Evaluation & Analysis
+1. AI comparison 글 전체를 TF-IDF 벡터로 변환한다.
+2. 평가 대상 글과 AI comparison 글들 사이의 cosine similarity를 계산한다.
+3. 평균 유사도를 AI Similarity Proxy로 사용한다.
 
-최종 분석에서는 사람 글과 AI 생성 글의 문체적 차이를 시각화하고, 분류 모델의 성능을 평가할 예정이다.
+### 5. Adjusted Suspicion Score
 
-### Evaluation Metrics
+최종적으로 AI 유사도와 개인 문체 불일치 정도를 결합하여 Adjusted Suspicion Score를 계산하였다.
 
-* Accuracy (정확도)
-* Precision (정밀도)
-* Recall (재현률)
-* F1-score (F1 점수)
-* Confusion Matrix (혼동 행렬)
+공식은 다음과 같다.
 
-### Analysis Plan
+```text
+Adjusted Suspicion Score
+= 0.7 × AI Similarity Proxy
++ 0.3 × (100 - Personal Similarity)
+```
 
-다음 항목을 중심으로 분석을 진행할 예정이다.
+이 점수는 AI 사용 여부를 단정하기 위한 기준이 아니다. 일반 AI 유사도와 개인 문체 일관성을 함께 고려하기 위한 보조 지표이다.
 
-* Human Text와 AI Text의 평균 문장 길이 비교
-* 단어 수 분포 비교
-* 어휘 다양도 비교
-* 모델별 성능 비교
-* 잘못 분류된 사례 분석
-* 문체 특징이 AI 탐지에 미치는 영향 분석
+해석 기준은 다음과 같다.
 
----
+| Adjusted Suspicion Score | Interpretation |
+| -----------------------: | -------------- |
+|                     0~40 | Low            |
+|                    40~70 | Medium         |
+|                   70~100 | High           |
 
-## V. Related Work
+또한 AI 유사도와 개인 문체 유사도의 조합에 따라 다음과 같이 해석하였다.
 
-본 프로젝트에서는 다음 자료와 도구를 참고할 예정이다.
-
-* Scikit-learn 공식 문서
-* TF-IDF Vectorizer 문서
-* Logistic Regression 문서
-* Random Forest Classifier 문서
-* Hugging Face Transformers 문서
-* AI-generated text detection 관련 연구 및 블로그 자료
+| AI Similarity | Personal Similarity | Interpretation                    |
+| ------------- | ------------------- | --------------------------------- |
+| 낮음            | 높음                  | AI 의심 낮음 / 개인 문체와 유사              |
+| 높음            | 낮음                  | AI 의심 높음 / 개인 문체와 불일치             |
+| 낮음            | 낮음                  | AI 유사도는 낮지만 개인 문체와도 불일치           |
+| 높음            | 높음                  | AI 유사도는 높지만 개인 문체와도 유사 / 추가 확인 필요 |
+| 중간            | 중간                  | 중간 수준 / 추가 확인 필요                  |
 
 ---
 
-## VI. Conclusion
+# IV. Evaluation & Analysis
 
-본 프로젝트는 개인 글쓰기 패턴과 AI 생성 글의 차이를 분석하여 AI 사용 가능성을 탐지하는 모델을 구현하는 것을 목표로 한다. 최종 결과에서는 문장 길이, 어휘 다양도, 반복 표현 등 문체적 특징이 사람 글과 AI 글을 구분하는 데 어느 정도 영향을 미치는지 확인할 예정이다.
+## 1. Evaluation Metrics
 
-현재 단계에서는 프로젝트 주제, 데이터셋 구성 방식, 분석 방법론, 평가 계획을 설계하였다. 이후 실제 데이터셋을 구축하고 분류 모델을 학습시켜 결과를 분석할 예정이다.
+모델 평가는 다음 지표를 사용하였다.
 
-### Role Distribution
+| Metric           | Korean | Description                |
+| ---------------- | ------ | -------------------------- |
+| Accuracy         | 정확도    | 전체 샘플 중 올바르게 분류한 비율        |
+| Precision        | 정밀도    | AI라고 예측한 것 중 실제 AI인 비율     |
+| Recall           | 재현율    | 실제 AI 글 중 AI라고 올바르게 예측한 비율 |
+| F1-score         | F1 점수  | Precision과 Recall의 조화평균    |
+| Confusion Matrix | 혼동 행렬  | 실제 라벨과 예측 라벨의 관계를 보여주는 표   |
 
-* 위강현: 데이터셋 수집 및 정리
-* 천재민: 모델 구현 및 실험
-* 최정호: 결과 분석, 블로그 작성 및 영상 녹화
+---
+
+## 2. Public Dataset Model Performance
+
+두 공개 영어 데이터셋에서 네 가지 모델을 비교한 결과, Linear SVM이 가장 높은 F1-score를 기록하였다.
+
+| Model               | AI_Human F1-score | Training_Essay F1-score |
+| ------------------- | ----------------: | ----------------------: |
+| Linear SVM          |             98.50 |                   98.56 |
+| Logistic Regression |             96.85 |                   97.24 |
+| Naive Bayes         |             92.22 |                   95.40 |
+| Random Forest       |             97.00 |                   97.78 |
+
+Linear SVM은 두 데이터셋 모두에서 가장 안정적인 성능을 보였다. 이는 TF-IDF로 변환된 텍스트 데이터가 고차원 희소 벡터 형태를 가지며, Linear SVM이 이러한 데이터 구조에서 강점을 보이기 때문으로 해석할 수 있다.
+
+---
+
+## 3. Confusion Matrix Analysis
+
+### Training_Essay Dataset
+
+Training_Essay 데이터셋에서 Linear SVM의 confusion matrix는 다음과 같다.
+
+| True / Predicted | Human |  AI |
+| ---------------- | ----: | --: |
+| Human            |   790 |  10 |
+| AI               |    13 | 787 |
+
+총 1,600개의 테스트 데이터 중 1,577개를 정확히 분류하였다.
+
+* Human-written text 800개 중 790개를 Human으로 올바르게 분류하였다.
+* AI-generated text 800개 중 787개를 AI로 올바르게 분류하였다.
+* Human을 AI로 잘못 분류한 경우는 10개였다.
+* AI를 Human으로 잘못 분류한 경우는 13개였다.
+
+이는 모델이 한쪽 라벨에 치우치지 않고 Human과 AI를 비교적 균형 있게 분류했음을 보여준다.
+
+### AI_Human Dataset
+
+AI_Human 데이터셋에서 Linear SVM의 confusion matrix는 다음과 같다.
+
+| True / Predicted | Human |  AI |
+| ---------------- | ----: | --: |
+| Human            |   790 |  10 |
+| AI               |    14 | 786 |
+
+총 1,600개의 테스트 데이터 중 1,576개를 정확히 분류하였다.
+
+* Human-written text 800개 중 790개를 Human으로 올바르게 분류하였다.
+* AI-generated text 800개 중 786개를 AI로 올바르게 분류하였다.
+* Human을 AI로 잘못 분류한 경우는 10개였다.
+* AI를 Human으로 잘못 분류한 경우는 14개였다.
+
+AI_Human 데이터셋에서도 모델은 두 클래스를 안정적으로 구분하였다.
+
+---
+
+## 4. Shuffled Label Sanity Check
+
+모델 성능이 데이터 누수나 코드 오류로 인해 과대평가된 것인지 확인하기 위해 라벨을 무작위로 섞은 sanity check를 수행하였다. 라벨을 섞은 경우 텍스트와 정답 라벨 사이의 실제 관계가 사라지므로, 정상적인 모델이라면 성능이 약 50% 수준으로 떨어져야 한다.
+
+실험 결과는 다음과 같다.
+
+| Dataset        | Accuracy | F1-score |
+| -------------- | -------: | -------: |
+| Training_Essay |    49.81 |    50.22 |
+| AI_Human       |    51.12 |    49.61 |
+
+두 데이터셋 모두 Accuracy와 F1-score가 약 50% 수준으로 하락하였다. 이는 기존 모델이 무작위 라벨을 학습한 것이 아니라, 실제 Human-written text와 AI-generated text 사이의 텍스트 패턴 차이를 학습했음을 보여준다.
+
+---
+
+## 5. Cross-Dataset Test
+
+동일 데이터셋 내부에서 train/test를 나누어 평가하면, 모델이 해당 데이터셋의 특정 패턴에 과도하게 맞춰졌을 가능성이 있다. 따라서 본 프로젝트에서는 서로 다른 공개 데이터셋 간 cross-dataset test를 수행하였다.
+
+실험 방식은 다음과 같다.
+
+1. Training_Essay 데이터셋으로 학습한 뒤 AI_Human 데이터셋으로 테스트
+2. AI_Human 데이터셋으로 학습한 뒤 Training_Essay 데이터셋으로 테스트
+
+결과는 다음과 같다.
+
+| Train Dataset  | Test Dataset   | Accuracy | Precision | Recall | F1-score |
+| -------------- | -------------- | -------: | --------: | -----: | -------: |
+| Training_Essay | AI_Human       |    95.55 |     97.75 |  93.25 |    95.45 |
+| AI_Human       | Training_Essay |    98.78 |     98.75 |  98.80 |    98.78 |
+
+Cross-Dataset Test에서도 F1-score가 95% 이상으로 나타났다. 이는 모델이 특정 데이터셋 내부의 패턴만 학습한 것이 아니라, 두 공개 데이터셋에서 공통적으로 나타나는 Human-written text와 AI-generated text의 표현 차이를 어느 정도 학습했음을 보여준다.
+
+다만 Training_Essay로 학습하여 AI_Human을 테스트했을 때는 AI 글을 Human으로 오분류한 사례가 상대적으로 더 많았다. Confusion Matrix는 다음과 같다.
+
+| True / Predicted | Human |   AI |
+| ---------------- | ----: | ---: |
+| Human            |  1957 |   43 |
+| AI               |   135 | 1865 |
+
+AI_Human 데이터셋으로 학습하여 Training_Essay를 테스트한 경우에는 더 균형 잡힌 결과가 나타났다.
+
+| True / Predicted | Human |   AI |
+| ---------------- | ----: | ---: |
+| Human            |  1975 |   25 |
+| AI               |    24 | 1976 |
+
+이 결과는 AI_Human 데이터셋이 상대적으로 더 다양한 표현 패턴을 포함하고 있어 Training_Essay 데이터셋으로의 일반화가 잘 이루어졌을 가능성을 시사한다.
+
+---
+
+## 6. Korean Personal Style Consistency Experiment
+
+영어 공개 데이터셋 실험은 일반 AI 탐지 모델의 성능을 확인하는 데 사용하였다. 그러나 실제 교육 환경에서 중요한 문제는 단순히 “이 글이 AI처럼 보이는가?”뿐만 아니라, “이 글이 작성자의 기존 문체와 일관적인가?”이다.
+
+이를 확인하기 위해 조원 직접 작성 한국어 데이터셋을 활용하여 개인 문체 일관성 실험을 수행하였다.
+
+Role별 평균 결과는 다음과 같다.
+
+| Role          | Personal Similarity Score | AI Similarity Proxy | Adjusted Suspicion Score |
+| ------------- | ------------------------: | ------------------: | -----------------------: |
+| ai_comparison |                      7.62 |               77.54 |                    81.99 |
+| validation    |                     83.46 |                6.83 |                     9.75 |
+
+Validation 데이터는 조원이 직접 작성한 새 글에 해당한다. 이 데이터는 기존 profile 글과 높은 문체 유사도를 보였고, AI comparison 글과의 유사도는 낮게 나타났다. 그 결과 Adjusted Suspicion Score는 9.75점으로 낮게 나타났다.
+
+반면 AI comparison 데이터는 조원 profile과의 문체 유사도가 낮고, AI comparison 전체와의 유사도가 높게 나타났다. 이에 따라 Adjusted Suspicion Score는 81.99점으로 높게 나타났다.
+
+조원별 결과는 다음과 같다.
+
+| Member | Role          | Personal Similarity Score | AI Similarity Proxy | Adjusted Suspicion Score |
+| ------ | ------------- | ------------------------: | ------------------: | -----------------------: |
+| 위강현    | ai_comparison |                      6.83 |               76.09 |                    81.21 |
+| 위강현    | validation    |                     83.46 |                6.83 |                     9.75 |
+| 천재민    | ai_comparison |                      7.62 |               78.06 |                    82.35 |
+| 천재민    | validation    |                     83.46 |                6.83 |                     9.75 |
+| 최정호    | ai_comparison |                      8.41 |               78.49 |                    82.42 |
+| 최정호    | validation    |                     83.46 |                6.83 |                     9.75 |
+
+조원별로도 동일한 경향이 나타났다. Validation 글은 개인 문체 유사도가 높고 AI 유사도는 낮았으며, AI comparison 글은 개인 문체 유사도가 낮고 AI 유사도는 높았다.
+
+이 결과는 개인 문체 유사도와 AI 유사도를 결합한 Adjusted Suspicion Score가 AI 사용 여부를 단정하는 기준은 아니지만, 기존 AI 탐지 결과를 보완하는 보조 지표로 활용될 가능성이 있음을 보여준다.
+
+---
+
+# V. Related Work
+
+본 프로젝트에서는 다음 자료와 도구를 참고하였다.
+
+## 1. Scikit-learn
+
+본 프로젝트의 모델 구현에는 Scikit-learn 라이브러리를 사용하였다. Scikit-learn은 Python 기반의 대표적인 머신러닝 라이브러리로, 텍스트 벡터화, 분류 모델 학습, 평가 지표 계산 등을 지원한다.
+
+사용한 주요 기능은 다음과 같다.
+
+* TfidfVectorizer
+* LogisticRegression
+* MultinomialNB
+* RandomForestClassifier
+* LinearSVC
+* train_test_split
+* accuracy_score
+* precision_score
+* recall_score
+* f1_score
+* confusion_matrix
+
+## 2. TF-IDF
+
+TF-IDF는 텍스트 데이터를 수치 벡터로 변환하기 위한 대표적인 방법이다. 본 프로젝트에서는 영어 공개 데이터셋에 대해 단어 기반 TF-IDF를 사용하였고, 한국어 개인 문체 실험에는 문자 n-gram 기반 TF-IDF를 사용하였다.
+
+영어 데이터에서는 unigram과 bigram을 사용하여 단어와 단어 조합의 패턴을 반영하였다. 한국어 데이터에서는 띄어쓰기와 형태소 분석 문제를 줄이기 위해 char-level n-gram을 적용하였다.
+
+## 3. Linear SVM
+
+Linear SVM은 고차원 희소 데이터에서 강한 성능을 보이는 분류 모델이다. 본 프로젝트의 공개 영어 데이터셋 실험에서도 Linear SVM은 두 데이터셋 모두에서 가장 높은 F1-score를 기록하였다.
+
+## 4. Cosine Similarity
+
+한국어 개인 문체 실험에서는 새 글과 기존 작성자 profile 글 사이의 유사도를 계산하기 위해 cosine similarity를 사용하였다. Cosine similarity는 두 벡터의 방향이 얼마나 유사한지를 측정하는 방법으로, 텍스트 유사도 계산에 자주 활용된다.
+
+## 5. AI-generated Text Detection
+
+AI-generated text detection 연구는 사람이 작성한 글과 AI가 생성한 글을 구분하는 문제를 다룬다. 기존 연구와 도구들은 주로 문장 구조, 어휘 사용, 통계적 패턴, 언어 모델의 생성 확률 등을 활용한다. 본 프로젝트는 이러한 일반 AI 탐지 접근에 더해, 작성자의 기존 문체와의 일관성을 함께 고려하는 보조적 접근을 실험하였다.
+
+---
+
+# VI. Conclusion
+
+본 프로젝트는 기존 AI 탐지기가 글 자체의 AI 생성 가능성만을 중심으로 판단한다는 한계에 주목하였다. 실제 교육 환경에서는 작성자마다 고유한 글쓰기 습관과 문체가 존재하기 때문에, 단일 AI 탐지 점수만으로 AI 사용 여부를 판단하면 오탐 가능성이 발생할 수 있다.
+
+이를 확인하기 위해 먼저 두 개의 공개 영어 AI 탐지 데이터셋을 활용하여 일반 AI 탐지 모델을 구현하였다. TF-IDF 기반 텍스트 벡터화와 Logistic Regression, Naive Bayes, Random Forest, Linear SVM 모델을 적용한 결과, Linear SVM이 두 데이터셋 모두에서 가장 높은 F1-score를 기록하였다. 또한 Shuffled Label Sanity Check를 통해 모델이 무작위 라벨을 학습한 것이 아님을 확인하였고, Cross-Dataset Test를 통해 서로 다른 데이터셋 간 일반화 성능도 확인하였다.
+
+그러나 공개 영어 데이터셋으로 학습한 모델은 특정 작성자의 기존 글쓰기 패턴을 고려하지 못하며, 한국어 글에 직접 적용하기도 어렵다. 따라서 본 프로젝트에서는 별도의 한국어 조원 작성 데이터셋을 활용하여 개인 문체 일관성 검증 실험을 수행하였다. 조원별 기존 글을 profile로 설정하고, 새 글과 AI 비교군이 해당 profile과 얼마나 유사한지 cosine similarity 기반으로 계산하였다.
+
+실험 결과, 조원이 직접 작성한 validation 글은 기존 profile과 높은 유사도를 보였고 AI comparison과의 유사도는 낮게 나타났다. 반대로 AI comparison 글은 개인 profile과의 유사도는 낮고 AI comparison과의 유사도는 높게 나타났다. 이를 바탕으로 AI Similarity Proxy와 Personal Similarity를 결합한 Adjusted Suspicion Score를 계산하였다.
+
+본 프로젝트의 Adjusted Suspicion Score는 AI 사용 여부를 단정하기 위한 절대적 기준이 아니다. 대신 일반 AI 탐지 결과와 개인 문체 일관성을 함께 고려하는 보조 지표로 활용될 수 있다. 특히 일반 AI 탐지 모델이 높은 AI 가능성을 보이더라도, 해당 글이 작성자의 기존 문체와 매우 유사하다면 단순히 AI 사용으로 단정하기 어렵다. 반대로 AI 가능성이 중간 수준이더라도 개인 문체와 크게 다르다면 추가 확인이 필요할 수 있다.
+
+따라서 본 프로젝트는 기존 AI 탐지 방식의 한계를 보완하기 위해, AI 생성 가능성과 개인 문체 일관성을 함께 고려하는 실험적 접근을 제안하였다는 점에서 의의가 있다.
+
+## Limitations
+
+본 프로젝트에는 다음과 같은 한계가 있다.
+
+첫째, 공개 데이터셋은 영어 기반이므로 한국어 과제 글에 직접 적용하기 어렵다.
+둘째, 공개 데이터셋은 특정 프롬프트와 특정 생성 모델로 만들어졌을 가능성이 있으므로 실제 교육 환경의 모든 AI 작성 글을 대표한다고 보기 어렵다.
+셋째, TF-IDF 기반 모델은 문맥의 깊은 의미를 이해하기보다는 단어와 표현 패턴을 중심으로 학습한다.
+넷째, 한국어 개인 문체 실험은 조원 3명의 제한된 글을 기반으로 하였기 때문에 더 많은 사용자와 더 다양한 주제의 글로 확장할 필요가 있다.
+다섯째, Adjusted Suspicion Score의 가중치인 0.7과 0.3은 실험적 기준이며, 향후 더 많은 데이터를 기반으로 조정될 필요가 있다.
+
+## Future Work
+
+향후 연구에서는 다음과 같은 방향으로 확장할 수 있다.
+
+1. 더 많은 사용자의 실제 글쓰기 데이터를 수집하여 개인 문체 profile을 강화한다.
+2. 한국어 형태소 분석기 또는 KoBERT와 같은 한국어 특화 모델을 적용한다.
+3. GPT, Claude, Gemini 등 다양한 생성형 AI 모델의 글을 비교한다.
+4. 사람이 AI 글을 수정한 mixed text를 추가하여 더 현실적인 상황을 반영한다.
+5. 개인 문체 유사도와 AI 탐지 점수의 가중치를 데이터 기반으로 최적화한다.
+
+## Role Distribution
+
+위강현: 데이터셋 수집 및 정리, 조원 글 작성 데이터 관리
+천재민: 모델 구현, 전처리 코드 작성, 실험 설계 및 결과 분석
+최정호: 결과 시각화, 블로그 작성, 영상 또는 음성 녹화 준비
