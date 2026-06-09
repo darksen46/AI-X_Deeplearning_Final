@@ -99,7 +99,16 @@ VI. Conclusion
 <img width="1672" height="941" alt="image" src="https://github.com/user-attachments/assets/3340f76b-a088-4be0-9e19-efc30718b8fb" />
 
 
+## Example Output: Personal Style-based AI Suspicion Score
 
+본 프로젝트의 최종 보조 지표는 입력 글에 대해 Personal Similarity, AI Similarity Proxy, Adjusted Suspicion Score를 계산한다. 단순히 “AI 가능성 몇 %”만 제시하는 것이 아니라, 해당 글이 기존 작성자의 문체와 얼마나 일관적인지도 함께 확인한다.
+
+| Text Type | Personal Similarity | AI Similarity Proxy | Adjusted Suspicion Score | Interpretation |
+|---|---:|---:|---:|---|
+| 조원 직접 작성 validation 글 | 65.28 | 44.76 | 41.75 | 개인 문체와 상대적으로 유사하며, AI 의심 점수는 중간 수준 |
+| AI comparison 글 | 41.39 | 69.24 | 66.05 | AI 비교군과 더 유사하며, 상대적으로 높은 의심 점수 |
+
+이 결과는 AI 사용 여부를 단정하는 판정기가 아니라, 기존 AI 탐지 결과에 개인 문체 일관성 정보를 추가하여 해석을 돕는 방식이다.
 
 
 ---
