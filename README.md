@@ -291,7 +291,7 @@ VI. Conclusion
 
 본 프로젝트에서는 TF-IDF로 텍스트를 수치 벡터화한 뒤 Linear SVM 모델을 적용하였다. Linear SVM은 고차원 희소 벡터 형태의 텍스트 데이터에 적합하며, 실제 실험에서도 가장 높은 F1-score를 보였다.
 
-```
+```code
 vectorizer = TfidfVectorizer(
     max_features=5000,
     ngram_range=(1, 2)
