@@ -14,6 +14,8 @@ AI+X: Deep Learning — Group G34, Option A:
 | 천재민  | 컴퓨터소프트웨어학부 1학년 2026096826   | [darksen64@hanyang.ac.kr](mailto:darksen64@hanyang.ac.kr)     | 모델 구현, 전처리 코드 작성, 실험 설계 및 결과 분석 |
 | 최정호  | 컴퓨터소프트웨어학부 1학년 20260   | [jungho31@hanyang.ac.kr](mailto:jungho31@hanyang.ac.kr)       | 결과 시각화, 블로그 작성, 영상 녹화 준비        |
 
+---
+
 ## Video / Audio Link
 
 [여기에 YouTube 링크 넣기 -> TODO]
