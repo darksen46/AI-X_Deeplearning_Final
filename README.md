@@ -291,6 +291,7 @@ VI. Conclusion
 
 본 프로젝트에서는 TF-IDF로 텍스트를 수치 벡터화한 뒤 Linear SVM 모델을 적용하였다. Linear SVM은 고차원 희소 벡터 형태의 텍스트 데이터에 적합하며, 실제 실험에서도 가장 높은 F1-score를 보였다.
 
+```
 vectorizer = TfidfVectorizer(
     max_features=5000,
     ngram_range=(1, 2)
@@ -303,6 +304,7 @@ model = LinearSVC()
 model.fit(X_train_vec, y_train)
 
 y_pred = model.predict(X_test_vec)
+```
 
 ---
 
@@ -354,6 +356,11 @@ AI Similarity Proxy는 평가 대상 글이 AI comparison 글들과 얼마나 �
 Adjusted Suspicion Score
 = 0.7 × AI Similarity Proxy
 + 0.3 × (100 - Personal Similarity)
+```
+
+```
+def calculate_adjusted_suspicion(personal_similarity, ai_similarity):
+    return 0.7 * ai_similarity + 0.3 * (100 - personal_similarity)
 ```
 
 이 점수는 AI 사용 여부를 단정하기 위한 기준이 아니다. 일반 AI 유사도와 개인 문체 일관성을 함께 고려하기 위한 보조 지표이다.
