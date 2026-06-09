@@ -36,7 +36,9 @@ Data files:
 
 [G34_korean_team_dataset_package_FINAL.zip](https://github.com/user-attachments/files/28686100/G34_korean_team_dataset_package_FINAL.zip)
 
-원본 AI_Human.csv 데이터셋은 파일 크기가 매우 커 GitHub에 직접 업로드하지 않고, 본 프로젝트에서는 Human-written text 2,000개와 AI-generated text 2,000개를 균형 샘플링한 데이터만 사용하였다. 원본 데이터셋의 출처는 References에 별도로 명시하였다.
+원본 AI_Human.csv 데이터셋은 파일 크기가 매우 커 GitHub에 직접 업로드하지 않았다. 대신 본 프로젝트에서는 원본 데이터에서 Human-written text 2,000개와 AI-generated text 2,000개를 균형 샘플링한 뒤, 텍스트 정제와 단어 수 기준 이상치 제거를 거친 전처리 완료 데이터를 사용하였다. 
+
+`ai_human_sample_preprocessed.csv`와 `essay_sample_preprocessed.csv`는 실제 모델 학습 및 평가에 사용한 샘플링·전처리 완료 데이터이다. 원본 데이터셋의 출처는 References에 별도로 명시하였다.
 
 ---
 
