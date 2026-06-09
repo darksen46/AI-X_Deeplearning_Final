@@ -1,5 +1,7 @@
 # 개인 글쓰기 패턴 학습 기반 문체 일관성 검증 및 AI 사용 탐지 모델
 
+AI+X: Deep Learning — Group G34Option A: 공개 AI 텍스트 데이터셋을 활용한 일반 AI 탐지 모델 구현과 개인 글쓰기 패턴 기반 문체 일관성 검증 실험
+
 ## Members
 
 | Name | Department / Year | Email                                                         | Role                            |
