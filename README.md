@@ -287,6 +287,23 @@ VI. Conclusion
 | Random Forest       | 여러 결정 트리를 결합한 앙상블 모델         |
 | Linear SVM          | 고차원 희소 텍스트 데이터에 강한 선형 SVM 모델 |
 
+### Core Implementation: TF-IDF and Linear SVM
+
+본 프로젝트에서는 TF-IDF로 텍스트를 수치 벡터화한 뒤 Linear SVM 모델을 적용하였다. Linear SVM은 고차원 희소 벡터 형태의 텍스트 데이터에 적합하며, 실제 실험에서도 가장 높은 F1-score를 보였다.
+
+vectorizer = TfidfVectorizer(
+    max_features=5000,
+    ngram_range=(1, 2)
+)
+
+X_train_vec = vectorizer.fit_transform(X_train)
+X_test_vec = vectorizer.transform(X_test)
+
+model = LinearSVC()
+model.fit(X_train_vec, y_train)
+
+y_pred = model.predict(X_test_vec)
+
 ---
 
 ## Experiment 2. Korean Personal Writing Consistency Test
