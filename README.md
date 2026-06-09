@@ -639,9 +639,9 @@ AI-generated text detection 연구는 사람이 작성한 글과 AI가 생성한
 
 - Pedregosa, F., Varoquaux, G., Gramfort, A., Michel, V., Thirion, B., Grisel, O., Blondel, M., Prettenhofer, P., Weiss, R., Dubourg, V., Vanderplas, J., Passos, A., Cournapeau, D., Brucher, M., Perrot, M., & Duchesnay, E. (2011). Scikit-learn: Machine learning in Python. Journal of Machine Learning Research, 12, 2825-2830. https://jmlr.org/papers/v12/pedregosa11a.html
 
-- Scikit-learn Developers. (2026). TfidfVectorizer. Scikit-learn documentation. Retrieved June 9, 2026, from https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html
+- Scikit-learn Developers. (n.d.). TfidfVectorizer. Scikit-learn documentation. Retrieved June 9, 2026, from https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html
 
-- Scikit-learn Developers. (2026). LinearSVC. Scikit-learn documentation. Retrieved June 9, 2026, from https://scikit-learn.org/stable/modules/generated/sklearn.svm.LinearSVC.html
+- Scikit-learn Developers. (n.d.). LinearSVC. Scikit-learn documentation. Retrieved June 9, 2026, from https://scikit-learn.org/stable/modules/generated/sklearn.svm.LinearSVC.html
 
 - Gerami, S. (n.d.). AI vs human text. Kaggle. Retrieved June 9, 2026, from https://www.kaggle.com/datasets/shanegerami/ai-vs-human-text/data
 
