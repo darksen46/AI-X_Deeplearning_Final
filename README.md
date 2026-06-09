@@ -623,7 +623,7 @@ AI-generated text detection 연구는 사람이 작성한 글과 AI가 생성한
 ## References
 
 ```markdown
-- Bao, G., Zhao, Y., Teng, Z., Yang, L., & Zhang, Y. (2024). Fast-DetectGPT: Efficient zero-shot detection of machine-generated text via conditional probability curvature. International Conference on Learning Representations (ICLR). https://arxiv.org/abs/2310.05130
+- Bao, G., Zhao, Y., Teng, Z., Yang, L., & Zhang, Y. (2023). Fast-DetectGPT: Efficient zero-shot detection of machine-generated text via conditional probability curvature. International Conference on Learning Representations (ICLR). https://arxiv.org/abs/2310.05130
 
 - Mitchell, E., Lee, Y., Khazatsky, A., Manning, C. D., & Finn, C. (2023). DetectGPT: Zero-shot machine-generated text detection using probability curvature. Proceedings of the 40th International Conference on Machine Learning (ICML). https://proceedings.mlr.press/v202/mitchell23a.html
 
