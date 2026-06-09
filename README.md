@@ -10,9 +10,9 @@ AI+X: Deep Learning — Group G34, Option A:
 
 | Name | Department / Year | Email                                                         | Role                            |
 | ---- | ----------------- | -------------------------------------------------------------- | ------------------------------- |
-| 위강현  | 컴퓨터소프트웨어학부 1학년 2026084302   | [kanghyun.we@hanyang.ac.kr](mailto:kanghyun.we@hanyang.ac.kr) | 데이터셋 수집 및 정리, 조원 글 작성 데이터 관리    |
-| 천재민  | 컴퓨터소프트웨어학부 1학년 2026096826   | [darksen64@hanyang.ac.kr](mailto:darksen64@hanyang.ac.kr)     | 모델 구현, 전처리 코드 작성, 실험 설계 및 결과 분석 |
-| 최정호  | 컴퓨터소프트웨어학부 1학년 2026040991  | [jungho31@hanyang.ac.kr](mailto:jungho31@hanyang.ac.kr)       | 결과 시각화, 블로그 작성, 영상 녹화 준비        |
+| 위강현  | 컴퓨터소프트웨어학부   1학년 2026084302   | [kanghyun.we@hanyang.ac.kr](mailto:kanghyun.we@hanyang.ac.kr) | 데이터셋 수집 및 정리, 조원 글 작성 데이터 관리    |
+| 천재민  | 컴퓨터소프트웨어학부   1학년 2026096826   | [darksen64@hanyang.ac.kr](mailto:darksen64@hanyang.ac.kr)     | 모델 구현, 전처리 코드 작성, 실험 설계 및 결과 분석 |
+| 최정호  | 컴퓨터소프트웨어학부   1학년 2026040991  | [jungho31@hanyang.ac.kr](mailto:jungho31@hanyang.ac.kr)       | 결과 시각화, 블로그 작성, 영상 녹화 준비        |
 
 ---
 
