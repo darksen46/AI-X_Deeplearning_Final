@@ -618,17 +618,34 @@ Linear SVM은 고차원 희소 데이터에서 강한 성능을 보이는 분류
 
 AI-generated text detection 연구는 사람이 작성한 글과 AI가 생성한 글을 구분하는 문제를 다룬다. 기존 연구와 도구들은 주로 문장 구조, 어휘 사용, 통계적 패턴, 언어 모델의 생성 확률 등을 활용한다. 본 프로젝트는 이러한 일반 AI 탐지 접근에 더해, 작성자의 기존 문체와의 일관성을 함께 고려하는 보조적 접근을 실험하였다.
 
+---
+
 ## References
 
-[여기에 참고한 Kaggle 데이터셋, Scikit-learn 문서, 관련 논문 또는 블로그 URL 더 추가하기]
-
 ```markdown
-- Scikit-learn Documentation: https://scikit-learn.org/stable/
-- TfidfVectorizer Documentation: https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html
-- LinearSVC Documentation: https://scikit-learn.org/stable/modules/generated/sklearn.svm.LinearSVC.html
-- Kaggle Dataset 1: https://www.kaggle.com/datasets/sunilthite/llm-detect-ai-generated-text-dataset
-- Kaggle Dataset 2: https://www.kaggle.com/datasets/shanegerami/ai-vs-human-text/data
+- Bao, G., Zhao, Y., Teng, Z., Yang, L., & Zhang, Y. (2024). Fast-DetectGPT: Efficient zero-shot detection of machine-generated text via conditional probability curvature. International Conference on Learning Representations (ICLR). https://arxiv.org/abs/2310.05130
+
+- Mitchell, E., Lee, Y., Khazatsky, A., Manning, C. D., & Finn, C. (2023). DetectGPT: Zero-shot machine-generated text detection using probability curvature. Proceedings of the 40th International Conference on Machine Learning (ICML). https://proceedings.mlr.press/v202/mitchell23a.html
+
+- Sadasivan, V. S., Kumar, A., Balasubramanian, S., Wang, W., & Feizi, S. (2023). Can AI-generated text be reliably detected? arXiv preprint arXiv:2303.11156. https://arxiv.org/abs/2303.11156
+
+- Wu, J., Yang, S., Zhan, R., Yuan, Y., Wong, D. F., & Chao, L. S. (2025). A survey on LLM-generated text detection: Necessity, methods, and future directions. Computational Linguistics, 51(1), 275-338. https://direct.mit.edu/coli/article/51/1/275/127462/A-Survey-on-LLM-Generated-Text-Detection-Necessity
+
+- 장원익, 장현종, 허의남 (2025). KoboNet: 한국어 AI 생성 텍스트 탐지를 위한 딥러닝 모델. 한국정보과학회 학술발표논문집, 2025 한국컴퓨터종합학술대회 논문집, 1123-1125. https://www.dbpia.co.kr/journal/articleDetail?nodeId=NODE12318433
+
+- 이상민, 이유진, 장우진, 안현철 (2025). 생성형 AI 기반 한국어 가짜뉴스 데이터셋 구축 및 탐지 모델 비교 분석 연구. 지능정보연구, 31(4), 193-216. https://doi.org/10.13088/jiis.2025.31.4.193
+
+- Pedregosa, F., Varoquaux, G., Gramfort, A., Michel, V., Thirion, B., Grisel, O., Blondel, M., Prettenhofer, P., Weiss, R., Dubourg, V., Vanderplas, J., Passos, A., Cournapeau, D., Brucher, M., Perrot, M., & Duchesnay, E. (2011). Scikit-learn: Machine learning in Python. Journal of Machine Learning Research, 12, 2825-2830. https://jmlr.org/papers/v12/pedregosa11a.html
+
+- Scikit-learn Developers. (2026). TfidfVectorizer. Scikit-learn documentation. Retrieved June 9, 2026, from https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html
+
+- Scikit-learn Developers. (2026). LinearSVC. Scikit-learn documentation. Retrieved June 9, 2026, from https://scikit-learn.org/stable/modules/generated/sklearn.svm.LinearSVC.html
+
+- Gerami, S. (n.d.). AI vs human text. Kaggle. Retrieved June 9, 2026, from https://www.kaggle.com/datasets/shanegerami/ai-vs-human-text/data
+
+- Thite, S. (n.d.). LLM: Detect AI generated text dataset. Kaggle. Retrieved June 9, 2026, from https://www.kaggle.com/datasets/sunilthite/llm-detect-ai-generated-text-dataset
 ```
+
 
 ---
 
