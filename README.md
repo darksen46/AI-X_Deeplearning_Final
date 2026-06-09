@@ -401,7 +401,7 @@ def calculate_adjusted_suspicion(personal_similarity, ai_similarity):
 
 ---
 
-## 2. Public Dataset Model Performance
+## 3. Public Dataset Model Performance
 
 두 공개 영어 데이터셋에서 네 가지 모델을 비교한 결과, Linear SVM이 가장 높은 F1-score를 기록하였다.
 
@@ -421,7 +421,7 @@ Linear SVM은 두 데이터셋 모두에서 가장 안정적인 성능을 보였
 
 ---
 
-## 3. Confusion Matrix Analysis
+## 4. Confusion Matrix Analysis
 
 ### Training_Essay Dataset
 
@@ -457,7 +457,7 @@ AI_Human 데이터셋에서도 모델은 두 클래스를 안정적으로 구분
 
 ---
 
-## 4. Shuffled Label Sanity Check
+## 5. Shuffled Label Sanity Check
 
 모델 성능이 데이터 누수나 코드 오류로 인해 과대평가된 것인지 확인하기 위해 라벨을 무작위로 섞은 sanity check를 수행하였다. 라벨을 섞은 경우 텍스트와 정답 라벨 사이의 실제 관계가 사라지므로, 정상적인 모델이라면 성능이 약 50% 수준으로 떨어져야 한다.
 
@@ -465,11 +465,26 @@ AI_Human 데이터셋에서도 모델은 두 클래스를 안정적으로 구분
 
 <img width="301" height="99" alt="image" src="https://github.com/user-attachments/assets/68eab29d-cd6b-4914-baaa-b165b7159d97" />
 
+```
+shuffled_y = y.sample(frac=1, random_state=42).reset_index(drop=True)
+
+X_train, X_test, y_train, y_test = train_test_split(
+    text_data,
+    shuffled_y,
+    test_size=0.4,
+    stratify=shuffled_y,
+    random_state=42
+)
+
+model.fit(vectorizer.fit_transform(X_train), y_train)
+y_pred = model.predict(vectorizer.transform(X_test))
+```
+
 두 데이터셋 모두 Accuracy와 F1-score가 약 50% 수준으로 하락하였다. 이는 기존 모델이 무작위 라벨을 학습한 것이 아니라, 실제 Human-written text와 AI-generated text 사이의 텍스트 패턴 차이를 학습했음을 보여준다.
 
 ---
 
-## 5. Cross-Dataset Test
+## 6. Cross-Dataset Test
 
 동일 데이터셋 내부에서 train/test를 나누어 평가하면, 모델이 해당 데이터셋의 특정 패턴에 과도하게 맞춰졌을 가능성이 있다. 따라서 본 프로젝트에서는 서로 다른 공개 데이터셋 간 cross-dataset test를 수행하였다.
 
@@ -507,7 +522,7 @@ AI_Human 데이터셋으로 학습하여 Training_Essay를 테스트한 경우�
 
 ---
 
-## 6. Korean Personal Style Consistency Experiment
+## 7. Korean Personal Style Consistency Experiment
 
 영어 공개 데이터셋 실험은 일반 AI 탐지 모델의 성능을 확인하는 데 사용하였다. 그러나 실제 교육 환경에서 중요한 문제는 단순히 “이 글이 AI처럼 보이는가?”뿐만 아니라, “이 글이 작성자의 기존 문체와 일관적인가?”이다.
 
