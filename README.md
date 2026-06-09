@@ -12,6 +12,21 @@
 
 [여기에 YouTube 링크 넣기 -> TODO]
 
+---
+
+## Code/Data Repository
+
+Code file: [AI+X_딥러닝_34조_코드_모음집.ipynb](https://github.com/user-attachments/files/28685999/AI%2BX_._34._._.ipynb) 
+
+Data files: 
+
+[ai_human_sample_preprocessed.csv](https://github.com/user-attachments/files/28686114/ai_human_sample_preprocessed.csv)
+
+
+[essay_sample_preprocessed.csv](https://github.com/user-attachments/files/28686103/essay_sample_preprocessed.csv)
+
+
+[G34_korean_team_dataset_package_FINAL.zip](https://github.com/user-attachments/files/28686100/G34_korean_team_dataset_package_FINAL.zip)
 
 ---
 
