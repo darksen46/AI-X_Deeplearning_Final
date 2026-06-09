@@ -291,7 +291,7 @@ VI. Conclusion
 
 본 프로젝트에서는 TF-IDF로 텍스트를 수치 벡터화한 뒤 Linear SVM 모델을 적용하였다. Linear SVM은 고차원 희소 벡터 형태의 텍스트 데이터에 적합하며, 실제 실험에서도 가장 높은 F1-score를 보였다.
 
-```code
+```python
 vectorizer = TfidfVectorizer(
     max_features=5000,
     ngram_range=(1, 2)
@@ -358,7 +358,7 @@ Adjusted Suspicion Score
 + 0.3 × (100 - Personal Similarity)
 ```
 
-```
+```python
 def calculate_adjusted_suspicion(personal_similarity, ai_similarity):
     return 0.7 * ai_similarity + 0.3 * (100 - personal_similarity)
 ```
@@ -478,7 +478,7 @@ AI_Human 데이터셋에서도 모델은 두 클래스를 안정적으로 구분
 
 <img width="301" height="99" alt="image" src="https://github.com/user-attachments/assets/68eab29d-cd6b-4914-baaa-b165b7159d97" />
 
-```
+```python
 shuffled_y = y.sample(frac=1, random_state=42).reset_index(drop=True)
 
 X_train, X_test, y_train, y_test = train_test_split(
