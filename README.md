@@ -196,10 +196,12 @@ VI. Conclusion
 
 본 프로젝트는 일반 AI 탐지 모델을 그대로 사용하는 것에서 나아가, 작성자 개인의 기존 문체와 새 글 사이의 일관성을 함께 고려하는 보조 지표를 제안한다.
 
-Approach| Input| Output| Limitation
-General AI Detection Model| 글 본문| Human / AI 예측 또는 AI 가능성| 작성자의 기존 문체를 고려하지 못함
-Personal Style Consistency Test| 기존 작성자 profile + 새 글| Personal Similarity| AI 생성 여부를 직접 판정하지는 못함
-Proposed Adjusted Suspicion Score| AI Similarity Proxy + Personal Similarity| 보정된 AI 의심 점수| 문체 모방형 AI 글에는 우회 가능성 존재
+| Approach | Input | Output | Limitation |
+|---|---|---|---|
+| General AI Detection Model | 글 본문 | Human / AI 예측 또는 AI 가능성 | 작성자의 기존 문체를 고려하지 못함 |
+| Personal Style Consistency Test | 기존 작성자 profile + 새 글 | Personal Similarity | AI 생성 여부를 직접 판정하지는 못함 |
+| Proposed Adjusted Suspicion Score | AI Similarity Proxy + Personal Similarity | 보정된 AI 의심 점수 | 문체 모방형 AI 글에는 우회 가능성 존재 |
+
 ---
 
 ## Experiment 1. Public Dataset 기반 일반 AI 탐지 모델
