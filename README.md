@@ -401,6 +401,19 @@ def calculate_adjusted_suspicion(personal_similarity, ai_similarity):
 
 ---
 
+## 2. Key Findings Summary
+
+본 프로젝트의 주요 실험 결과는 다음과 같다.
+
+| Experiment | Purpose | Main Finding |
+|---|---|---|
+| Public Dataset Model Performance | 공개 영어 데이터셋 기반 일반 AI 탐지 모델 성능 확인 | Linear SVM이 두 데이터셋에서 가장 높은 F1-score를 기록하였다. |
+| Shuffled Label Sanity Check | 모델 성능이 우연이나 데이터 누수 때문인지 확인 | 라벨을 무작위로 섞었을 때 성능이 약 50% 수준으로 하락하였다. |
+| Cross-Dataset Test | 서로 다른 데이터셋 간 일반화 성능 확인 | Training_Essay와 AI_Human 간 교차 평가에서도 95% 이상의 F1-score를 보였다. |
+| Korean Personal Style Experiment | 개인 문체 일관성을 고려한 보조 지표 검증 | validation 데이터는 ai_comparison보다 Personal Similarity가 높고 Adjusted Suspicion Score가 낮은 경향을 보였다. |
+
+---
+
 ## 3. Public Dataset Model Performance
 
 두 공개 영어 데이터셋에서 네 가지 모델을 비교한 결과, Linear SVM이 가장 높은 F1-score를 기록하였다.
